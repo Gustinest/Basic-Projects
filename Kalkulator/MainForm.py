@@ -19,7 +19,7 @@ class MainForm(QWidget):
         self.lineEdit.setStyleSheet("background-color: lightgray;")
 
         self.__7btn = QPushButton('7')
-        self.__8Button = QPushButton('8')
+        self.__8btn = QPushButton('8')
         self.__9btn = QPushButton('9')
         self.mulbtn = QPushButton('X')
         self.clearbtn = QPushButton('CLR')
@@ -42,7 +42,7 @@ class MainForm(QWidget):
 
         # Baris Pertama
         layout.addWidget(self.__7btn, 1, 0)
-        layout.addWidget(self.__8Button, 1, 1)
+        layout.addWidget(self.__8btn, 1, 1)
         layout.addWidget(self.__9btn, 1, 2)
         layout.addWidget(self.clearbtn, 1, 3)
 
@@ -68,3 +68,68 @@ class MainForm(QWidget):
         layout.addWidget(self.percentagebtn,5,0)
         layout.addWidget(self.calculatebtn, 5, 1, 1, 3)
         self.setLayout(layout)
+
+        self.__0btn.clicked.connect(lambda: self.writeDigit(0))
+        self.__1btn.clicked.connect(lambda: self.writeDigit(1))
+        self.__2btn.clicked.connect(lambda: self.writeDigit(2))
+        self.__3btn.clicked.connect(lambda: self.writeDigit(3))
+        self.__4btn.clicked.connect(lambda: self.writeDigit(4))
+        self.__5btn.clicked.connect(lambda: self.writeDigit(5))
+        self.__6btn.clicked.connect(lambda: self.writeDigit(6))
+        self.__7btn.clicked.connect(lambda: self.writeDigit(7))
+        self.__8btn.clicked.connect(lambda: self.writeDigit(8))
+        self.__9btn.clicked.connect(lambda: self.writeDigit(9))
+        self.dotbtn.clicked.connect(self.writePoint)
+        self.mulbtn.clicked.connect(lambda: self.writeOperator('*'))
+        self.divbtn.clicked.connect(lambda: self.writeOperator('/'))
+        self.plusbtn.clicked.connect(lambda: self.writeOperator('+'))
+        self.minusbtn.clicked.connect(lambda: self.writeOperator('-'))
+        self.calculatebtn.clicked.connect(self.writeCalculate)
+        self.percentagebtn.clicked.connect(self.percentagebtnClick)
+        self.clearbtn.clicked.connect(self.lineEdit.clear)
+
+    def writeDigit(self, digit):
+        if digit in range(0,10):
+            self.lineEdit.setText(
+                self.lineEdit.text() + str(digit))
+
+        
+    def writePoint(self):
+        if len(self.lineEdit.text()) == 0 or \
+        self.lineEdit.text()[-1] in ['*', '/', '+', '-']:
+            return
+        self.lineEdit.setText(
+            self.lineEdit.text() + '.')
+    
+        
+    def writeOperator(self, operator):
+        if len(self.lineEdit.text()) == 0: return
+        if operator in ['*', '/', '+', '-']:
+            if self.lineEdit.text()[-1] in ['*', '/', '+', '-']:
+                self.lineEdit.setText(self.lineEdit.text()[-1] + operator)
+            else:
+                self.lineEdit.setText(self.lineEdit.text() + operator)
+
+       
+    def writeCalculate(self):
+        expression = self.lineEdit.text()
+        if len(expression)  == 0: return
+        try:
+            result = eval(expression)
+            self.lineEdit.setText(str(result))
+        except:
+            self.lineEdit.setText('ERROR')
+
+    
+       
+    def percentagebtnClick(self):
+        expression = self.lineEdit.text()
+        if len(expression)  == 0: return
+        try:
+            result = eval(expression) / 100
+            self.lineEdit.setText(str(result))
+        except:
+            self.lineEdit.setText('ERROR')
+    
+
+        
