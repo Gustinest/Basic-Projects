@@ -8,4 +8,10 @@ class MainForm(QWidget):
         self.setupUi()
 
     def setupUi(self):
-        self.
+        self.resize(250, 250)
+        self.move(250, 300)
+        self.setWindowTitle("Kalulator")
+
+        self.lineEdit = QLineEdit
+        self.lineEdit.setAlignment(Qt.AlignRight)
+        self.lineEdit
