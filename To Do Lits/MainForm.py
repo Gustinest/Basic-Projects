@@ -7,19 +7,26 @@ class MainForm(QWidget):
 
     def setupUI(self):
         self.resize(500, 200)
-        self.move(400, 200)
+        self.move(400, 400)
         self.setWindowTitle('To do List')
 
        
-        self.tambahbtn = QPushButton('TAMBAH')
-        self.hapusbtn = QPushButton('HAPUS')
+        self.tambahbtn = QPushButton('&ADD TASK')
+        self.hapusbtn = QPushButton('&DELETE TASK')
+        self.editbtn = QPushButton('&EDIT TASK')
+        self.clrbtn = QPushButton('&CLEAR')
 
-        hbox = QHBoxLayout()
-        hbox.addWidget(self.tambahbtn)
-        hbox.addWidget(self.hapusbtn)
-
+        button_layout = QVBoxLayout()  # Membuat layout untuk tombol-tombol
+        button_layout.addWidget(self.tambahbtn)
+        button_layout.addWidget(self.hapusbtn)
+        button_layout.addWidget(self.editbtn)
+        button_layout.addWidget(self.clrbtn)
+        button_layout.addStretch()
         self.contactList = QListWidget()
-        layout = QVBoxLayout()
-        layout.addWidget(self.contactList)
-        layout.addLayout(hbox)
-        self.setLayout(layout)
+
+        main_layout = QHBoxLayout()  # Membuat layout utama
+        main_layout.addWidget(self.contactList)
+        main_layout.addLayout(button_layout)  # Menambahkan layout tombol-tombol ke dalam layout utama
+        self.setLayout(main_layout)
+
+        
