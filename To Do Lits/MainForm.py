@@ -16,7 +16,7 @@ class MainForm(QWidget):
         self.editbtn = QPushButton('&EDIT TASK')
         self.clrbtn = QPushButton('&CLEAR')
 
-        button_layout = QVBoxLayout()  # Membuat layout untuk tombol-tombol
+        button_layout = QVBoxLayout()
         button_layout.addWidget(self.tambahbtn)
         button_layout.addWidget(self.hapusbtn)
         button_layout.addWidget(self.editbtn)
@@ -24,9 +24,16 @@ class MainForm(QWidget):
         button_layout.addStretch()
         self.contactList = QListWidget()
 
-        main_layout = QHBoxLayout()  # Membuat layout utama
+        main_layout = QHBoxLayout() 
         main_layout.addWidget(self.contactList)
-        main_layout.addLayout(button_layout)  # Menambahkan layout tombol-tombol ke dalam layout utama
+        main_layout.addLayout(button_layout)  
         self.setLayout(main_layout)
+
+        self.tambahbtn.clicked.connect(self.tambahbtnClick)
+        self.hapusbtn.clicked.connect(self.hapusbtnClick)
+        self.editbtn.clicked.connect(self.editbtnClick)
+        self.clrbtn.clicked.connect(self.clrbtnClick)
+
+        
 
         
