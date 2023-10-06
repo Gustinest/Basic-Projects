@@ -34,6 +34,8 @@ class MainForm(QWidget):
         self.editbtn.clicked.connect(self.editbtnClick)
         self.clrbtn.clicked.connect(self.clrbtnClick)
 
+        # apakah saya bisa
+
         
 
         
