@@ -10,7 +10,6 @@ class MainForm(QWidget):
         self.move(400, 400)
         self.setWindowTitle('To do List')
 
-       
         self.tambahbtn = QPushButton('&ADD TASK')
         self.hapusbtn = QPushButton('&DELETE TASK')
         self.editbtn = QPushButton('&EDIT TASK')
@@ -34,8 +33,5 @@ class MainForm(QWidget):
         self.editbtn.clicked.connect(self.editbtnClick)
         self.clrbtn.clicked.connect(self.clrbtnClick)
 
-        # apakah saya bisa
+    def btntambah(self):
 
-        
-
-        
